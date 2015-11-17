@@ -28,9 +28,10 @@
             "host": "vitarn.com",
             "path": "/var/www/vitarn.com",
             "post-deploy": "npm install --production ; pm2 startOrRestart ecosystem.json --env production",
+            "pre-deploy-local": "git push origin master",
             "ref": "origin/master",
             "repo": "https://github.com/cncolder/vitarn.com.git",
-            "user": "www-data"
+            "user": "root"
         }
     }
 }

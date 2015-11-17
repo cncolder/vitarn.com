@@ -27,7 +27,7 @@
         "production": {
             "host": "vitarn.com",
             "path": "/var/www/vitarn.com",
-            "post-deploy": "npm install --production ; pm2 startOrRestart ecosystem.json --env production",
+            "post-deploy": "npm install --production --unsafe-perm ; pm2 startOrRestart ecosystem.json --env production",
             "pre-deploy-local": "echo",
             "ref": "origin/master",
             "repo": "https://github.com/cncolder/vitarn.com.git",

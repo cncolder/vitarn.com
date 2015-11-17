@@ -1,7 +1,29 @@
 {
+    "apps": [
+        {
+            "env": {
+                "HOST": "0.0.0.0",
+                "NODE_ENV": "development"
+            },
+            "env_production": {
+                "NODE_ENV": "production",
+                "PORT": 8081
+            },
+            "ignore_watch": [
+                "[\\/\\\\]\\./",
+                "assets",
+                "node_modules",
+                "tasks",
+                "views"
+            ],
+            "instances": "1",
+            "name": "vitarn.com",
+            "script": "app.js",
+            "watch": false
+        }
+    ],
     "author": "colder",
     "dependencies": {
-        "babel": "^6.1.5",
         "ejs": "~0.8.4",
         "grunt": "0.4.2",
         "grunt-contrib-clean": "~0.5.0",
@@ -20,6 +42,16 @@
         "sails": "~0.11.2",
         "sails-disk": "~0.10.0"
     },
+    "deploy": {
+        "digitalocean": {
+            "host": "vitarn.com",
+            "path": "/var/www/vitarn.com",
+            "post-deploy": "npm i --production && pm2 startOrRestart package.json --env production",
+            "ref": "origin/master",
+            "repo": "https://github.com/cncolder/vitarn.com.git",
+            "user": "root"
+        }
+    },
     "description": "vitarn.com website",
     "keywords": [],
     "license": "",
@@ -32,7 +64,7 @@
     },
     "scripts": {
         "debug": "node debug app.js",
-        "start": "babel-node app.js"
+        "start": "node app.js"
     },
     "version": "0.0.0"
 }

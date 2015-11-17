@@ -1,0 +1,36 @@
+{
+    "apps": [
+        {
+            "env": {
+                "HOST": "0.0.0.0",
+                "NODE_ENV": "development"
+            },
+            "env_production": {
+                "HOST": "",
+                "NODE_ENV": "production",
+                "PORT": 8081
+            },
+            "ignore_watch": [
+                "[\\/\\\\]\\./",
+                "assets",
+                "node_modules",
+                "tasks",
+                "views"
+            ],
+            "instances": "1",
+            "name": "vitarn.com",
+            "script": "app.js",
+            "watch": false
+        }
+    ],
+    "deploy": {
+        "production": {
+            "host": "vitarn.com",
+            "path": "/var/www/vitarn.com",
+            "post-deploy": "npm install --production ; pm2 startOrRestart ecosystem.json --env production",
+            "ref": "origin/master",
+            "repo": "https://github.com/cncolder/vitarn.com.git",
+            "user": "www-data"
+        }
+    }
+}

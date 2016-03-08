@@ -22,5 +22,12 @@ let middlewaresForApp = [
   routes,
 ]
 
+if (env.local) {
+  middlewaresForApp = [
+    require('./webpack-dev').default,
+    require('./webpack-hot').default,
+  ].concat(middlewaresForApp)
+}
+
 
 export default convert.compose(middlewaresForApp)

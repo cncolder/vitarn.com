@@ -8,10 +8,6 @@ export default class extends React.Component {
   render() {
     return (
       <Layout>
-        <link rel="stylesheet" href="/css/animate.min.css" />
-        <link rel="stylesheet" href="/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/css/font-awesome.min.css" />
-        <link rel="stylesheet" href="/css/importer.css" />
 
         <nav id="mainNav" className="navbar navbar-default navbar-fixed-top">
           <div className="container-fluid">
@@ -59,7 +55,7 @@ export default class extends React.Component {
           {/*/.container-fluid*/}
         </nav>
 
-        <header>
+        <header style={{ backgroundImage: "url('../img/header.jpg')" }}>
           <div className="header-content">
             <div className="header-content-inner">
               <h1>{ __('Make science and technology more simple') }</h1>
@@ -235,15 +231,6 @@ export default class extends React.Component {
             </div>
           </div>
         </aside>
-
-        <script src="/js/jquery.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/jquery.easing.min.js"></script>
-        <script src="/js/jquery.fittext.js"></script>
-        <script src="/js/jquery.qrcode.min.js"></script>
-        <script src="/js/wow.min.js"></script>
-        <script src="/js/creative.js"></script>
-        <script src="/js/index.js"></script>
 
       </Layout>
     )

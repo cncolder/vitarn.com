@@ -75,13 +75,24 @@ var _class = function (_React$Component) {
         _react2.default.createElement('meta', { name: 'apple-mobile-web-app-title', content: title }),
         _react2.default.createElement('link', { rel: 'apple-touch-icon-precomposed', href: '/img/app-icon72x72@2x.png' }),
         _react2.default.createElement('meta', { name: 'msapplication-TileImage', content: '/img/app-icon72x72@2x.png' }),
-        _react2.default.createElement('meta', { name: 'msapplication-TileColor', content: '#0e90d2' })
+        _react2.default.createElement('meta', { name: 'msapplication-TileColor', content: '#0e90d2' }),
+        _react2.default.createElement('link', { rel: 'stylesheet', href: '/css/animate.min.css' }),
+        _react2.default.createElement('link', { rel: 'stylesheet', href: '/css/bootstrap.min.css' }),
+        _react2.default.createElement('link', { rel: 'stylesheet', href: '/css/font-awesome.min.css' })
       );
 
       var body = _react2.default.createElement(
         'body',
         { id: 'page-top' },
-        this.props.children
+        this.props.children,
+        _react2.default.createElement('script', { src: '/js/jquery.min.js' }),
+        _react2.default.createElement('script', { src: '/js/bootstrap.min.js' }),
+        _react2.default.createElement('script', { src: '/js/jquery.easing.min.js' }),
+        _react2.default.createElement('script', { src: '/js/jquery.fittext.js' }),
+        _react2.default.createElement('script', { src: '/js/jquery.qrcode.min.js' }),
+        _react2.default.createElement('script', { src: '/js/wow.min.js' }),
+        _react2.default.createElement('script', { src: '/js/vendor.js' }),
+        _react2.default.createElement('script', { src: '/js/client.js' })
       );
 
       return _react2.default.createElement(

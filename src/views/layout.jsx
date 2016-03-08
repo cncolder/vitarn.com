@@ -44,12 +44,25 @@ export default class extends React.Component {
         {/* Tile icon for Win8 (144x144 + tile color) */}
         <meta name="msapplication-TileImage" content="/img/app-icon72x72@2x.png" />
         <meta name="msapplication-TileColor" content="#0e90d2" />
+
+        <link rel="stylesheet" href="/css/animate.min.css" />
+        <link rel="stylesheet" href="/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/css/font-awesome.min.css" />
       </head>
     )
 
     const body = (
       <body id="page-top">
         {this.props.children}
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/jquery.easing.min.js"></script>
+        <script src="/js/jquery.fittext.js"></script>
+        <script src="/js/jquery.qrcode.min.js"></script>
+        <script src="/js/wow.min.js"></script>
+        <script src="/js/vendor.js"></script>
+        <script src="/js/client.js"></script>
       </body>
     )
 

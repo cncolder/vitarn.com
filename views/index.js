@@ -56,10 +56,6 @@ var _class = function (_React$Component) {
       return _react2.default.createElement(
         _layout2.default,
         null,
-        _react2.default.createElement('link', { rel: 'stylesheet', href: '/css/animate.min.css' }),
-        _react2.default.createElement('link', { rel: 'stylesheet', href: '/css/bootstrap.min.css' }),
-        _react2.default.createElement('link', { rel: 'stylesheet', href: '/css/font-awesome.min.css' }),
-        _react2.default.createElement('link', { rel: 'stylesheet', href: '/css/importer.css' }),
         _react2.default.createElement(
           'nav',
           { id: 'mainNav', className: 'navbar navbar-default navbar-fixed-top' },
@@ -166,7 +162,7 @@ var _class = function (_React$Component) {
         ),
         _react2.default.createElement(
           'header',
-          null,
+          { style: { backgroundImage: "url('../img/header.jpg')" } },
           _react2.default.createElement(
             'div',
             { className: 'header-content' },
@@ -542,15 +538,7 @@ var _class = function (_React$Component) {
               )
             )
           )
-        ),
-        _react2.default.createElement('script', { src: '/js/jquery.js' }),
-        _react2.default.createElement('script', { src: '/js/bootstrap.min.js' }),
-        _react2.default.createElement('script', { src: '/js/jquery.easing.min.js' }),
-        _react2.default.createElement('script', { src: '/js/jquery.fittext.js' }),
-        _react2.default.createElement('script', { src: '/js/jquery.qrcode.min.js' }),
-        _react2.default.createElement('script', { src: '/js/wow.min.js' }),
-        _react2.default.createElement('script', { src: '/js/creative.js' }),
-        _react2.default.createElement('script', { src: '/js/index.js' })
+        )
       );
     }
   }]);

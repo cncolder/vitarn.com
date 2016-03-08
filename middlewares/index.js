@@ -50,4 +50,8 @@ var log = require('../lib/debug')('app:middlewares:index');
 
 var middlewaresForApp = [_responseTime2.default, _logger2.default, _compress2.default, _conditionalGet2.default, _etag2.default, _serveStatic2.default, _react2.default, _routes2.default];
 
+if (_env2.default.local) {
+  middlewaresForApp = [require('./webpack-dev').default, require('./webpack-hot').default].concat(middlewaresForApp);
+}
+
 exports.default = _koaConvert2.default.compose(middlewaresForApp);

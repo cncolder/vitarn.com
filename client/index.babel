@@ -1,3 +1,17 @@
+// import './css/animate.min.css'
+// import './css/bootstrap.min.css'
+// import './css/font-awesome.min.css'
+import './less/index.less'
+//
+// import * as $ from './js/jquery.min'
+// import './js/bootstrap.min'
+// import './js/jquery.easing.min'
+// import './js/jquery.fittext'
+// import './js/jquery.qrcode.min'
+// import './js/wow.min'
+import env from '../lib/env'
+
+
 /*!
  * Start Bootstrap - Creative Bootstrap Theme (http://startbootstrap.com)
  * Code licensed under the Apache License v2.0.
@@ -46,3 +60,23 @@
     new WOW().init();
 
 })(jQuery); // End of use strict
+
+
+/*!
+ * ViTarn website (http://vitarn.com)
+ */
+
+(function($) {
+  'use strict';
+
+  // jQuery for QR code - requires jQuery QR Code plugin
+  $('div.qrcode').each(function() {
+    $(this).qrcode({
+      width: 86,
+      height: 86,
+      foreground: '#f05f40',
+      text: $(this).data('qrtext'),
+    })
+  })
+
+})(jQuery)

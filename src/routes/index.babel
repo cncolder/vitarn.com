@@ -1,0 +1,29 @@
+/**
+ * Routers
+ *
+ * Import all routers at here.
+ */
+
+import Router from 'koa-router'
+import compose from 'koa-compose'
+import config from '../config'
+const log = require('../lib/debug')('app:routes')
+
+
+const router = new Router()
+  .get('/', async ctx => {
+
+    ctx.render('index', {
+      env: {
+        NODE_ENV: process.env.NODE_ENV,
+      },
+    })
+    ctx.status = 200
+  })
+
+const index = router.routes()
+
+
+export default compose([
+  index,
+])

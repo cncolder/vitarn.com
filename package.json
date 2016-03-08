@@ -1,37 +1,49 @@
 {
-    "author": "colder",
-    "dependencies": {
-        "ejs": "~0.8.4",
-        "grunt": "0.4.2",
-        "grunt-contrib-clean": "~0.5.0",
-        "grunt-contrib-coffee": "~0.10.1",
-        "grunt-contrib-concat": "~0.3.0",
-        "grunt-contrib-copy": "~0.5.0",
-        "grunt-contrib-cssmin": "~0.9.0",
-        "grunt-contrib-jst": "~0.6.0",
-        "grunt-contrib-less": "0.11.1",
-        "grunt-contrib-uglify": "~0.4.0",
-        "grunt-contrib-watch": "~0.5.3",
-        "grunt-sails-linker": "~0.9.5",
-        "grunt-sync": "~0.0.4",
-        "include-all": "~0.1.3",
-        "rc": "~0.5.0",
-        "sails": "~0.11.2",
-        "sails-disk": "~0.10.0"
-    },
-    "description": "vitarn.com website",
-    "keywords": [],
-    "license": "",
-    "main": "app.js",
-    "name": "vitarn.com",
-    "private": true,
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/colder/vitarn.com.git"
-    },
-    "scripts": {
-        "debug": "node debug app.js",
-        "start": "node app.js"
-    },
-    "version": "0.0.0"
+  "name": "vitarn.com",
+  "version": "0.2.0",
+  "author": "colder",
+  "description": "vitarn.com website",
+  "keywords": [],
+  "license": "",
+  "main": "index.js",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/colder/vitarn.com.git"
+  },
+  "dependencies": {
+    "babel-runtime": "6.6.1",
+    "debug": "2.2.0",
+    "koa": "2.0.0-alpha.3",
+    "koa-compose": "3.0.0",
+    "koa-compress": "1.0.9",
+    "koa-conditional-get": "1.0.3",
+    "koa-convert": "1.2.0",
+    "koa-etag": "2.1.1",
+    "koa-logger": "2.0.0",
+    "koa-response-time": "1.0.2",
+    "koa-router": "7.0.0",
+    "koa-static": "2.0.0",
+    "ms": "0.7.1",
+    "react": "0.14.7",
+    "react-dom": "0.14.7"
+  },
+  "devDependencies": {
+    "babel-core": "6.6.4",
+    "babel-plugin-external-helpers": "6.5.0",
+    "babel-plugin-transform-runtime": "6.6.0",
+    "babel-plugin-react-transform": "^2.0.0",
+    "babel-polyfill": "^6.6.1",
+    "babel-preset-es2015": "6.6.0",
+    "babel-preset-react": "6.5.0",
+    "babel-preset-stage-0": "6.5.0",
+    "js-beautify": "1.6.2",
+    "mocha": "^2.4.5",
+    "pm2": "^1.0.2"
+  },
+  "scripts": {
+    "deploy": "pm2 deploy ecosystem.json production",
+    "start": "pm2-dev --raw ecosystem.json",
+    "stop": "pm2 kill"
+  }
 }

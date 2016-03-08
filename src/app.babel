@@ -1,0 +1,47 @@
+/**
+ * import
+ */
+
+import convert from 'koa-convert'
+import Koa from 'koa'
+import middlewares from './middlewares'
+const log = require('./lib/debug')('app:app')
+
+/**
+ * app
+ */
+
+const app = new Koa()
+
+/**
+ * app setup
+ */
+
+// use following snippet to make migration easier.
+// https://github.com/gyson/koa-convert#migration
+const _appUse = app.use
+app.use = mw => _appUse.call(app, convert(mw))
+
+/**
+ * app settings
+ */
+
+app.proxy = true
+app.keys = ['vtrn']
+
+/**
+ * app middlewares
+ */
+
+app.use(middlewares)
+
+/**
+ * server
+ */
+
+const PORT = process.env.PORT || 3000
+const HOST = process.env.HOST || 'localhost'
+
+app.listen(PORT, HOST, () => {
+  log(`Server listening at http://${HOST}:${PORT}`)
+})

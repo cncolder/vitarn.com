@@ -1,0 +1,41 @@
+import ms from 'ms'
+import env from './lib/env'
+
+
+var opts = {
+  compress: {
+    // filter: function(content_type) {
+    //   return /text/i.test(content_type)
+    // },
+    // threshold: 2048,
+    // flush: require('zlib').Z_SYNC_FLUSH
+  },
+
+  etag: {
+    // weak: false,
+  },
+
+  serveStatic: {
+    root: './public',
+    // defer: true,
+    maxAge: ms('1 day'),
+    // defer: false,
+    // hidden: false,
+    // index: 'index.html',
+  },
+
+  react: {
+    path: './views',
+    extname: '.js',
+    doctype: '<!DOCTYPE html>',
+    cache: env.deploy,
+    beautify: env.local,
+  },
+}
+
+if (env.deploy) {
+  opts.serveStatic.maxAge = ms('1 month')
+}
+
+
+export default opts

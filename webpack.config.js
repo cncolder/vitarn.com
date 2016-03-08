@@ -30,26 +30,25 @@ var _env2 = _interopRequireDefault(_env);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var version = _package2.default.version;
 var join = function join(p) {
   return _path2.default.join(__dirname, p);
 };
-
-/**
- * https://github.com/glenjamin/webpack-hot-middleware#config
- *
- * path - The path which the middleware is serving the event stream on
- * timeout - The time to wait after a disconnection before attempting to reconnect
- * overlay - Set to false to disable the DOM-based client-side overlay.
- * reload - Set to true to auto-reload the page when webpack gets stuck.
- * noInfo - Set to true to disable informational console logging.
- * quiet - Set to true to disable all console logging.
- */
-var hotMiddleware = 'webpack-hot-middleware/client?reload=true&overlay=false';
+var version = _package2.default.version;
 
 exports.default = {
   entry: {
-    client: _env2.default.deploy ? './client' : [hotMiddleware, './client']
+    client: _env2.default.local ? [
+    /**
+     * https://github.com/glenjamin/webpack-hot-middleware#config
+     *
+     * path - The path which the middleware is serving the event stream on
+     * timeout - The time to wait after a disconnection before attempting to reconnect
+     * overlay - Set to false to disable the DOM-based client-side overlay.
+     * reload - Set to true to auto-reload the page when webpack gets stuck.
+     * noInfo - Set to true to disable informational console logging.
+     * quiet - Set to true to disable all console logging.
+     */
+    'webpack-hot-middleware/client?reload=true&overlay=false', 'style!./client/less/index.less', './client'] : ['file?name=css/client.css!extract!./client/less/index.less', './client']
   },
   // vendor: [
   //   './client/css/animate.min.css',
@@ -63,11 +62,11 @@ exports.default = {
   //   './client/js/wow.min.js',
   // ],
   output: {
-    path: join('./public/js/'),
-    filename: '[name].js',
-    publicPath: '/js/'
+    path: join('./public/'),
+    filename: 'js/[name].js'
   },
-  devtool: _env2.default.deploy ? [] : 'inline-source-map',
+  // publicPath: '/js/',
+  devtool: _env2.default.local ? 'inline-source-map' : [],
   resolve: {
     extensions: ['', '.webpack.js', '.web.js', '.js', '.babel', '.jsx']
   },
@@ -84,11 +83,8 @@ exports.default = {
         plugins: ['transform-runtime']
       }
     }, {
-      test: /\.css$/,
-      loader: 'style!css'
-    }, {
       test: /\.less$/,
-      loader: 'style!css!postcss-loader!less?noIeCompat'
+      loader: 'css!postcss!less?noIeCompat'
     }, {
       test: /\.(jpg)$/,
       loader: 'url',
@@ -112,37 +108,33 @@ exports.default = {
       }
     }, {
       test: /\.(eot|svg)/,
-      loader: 'file'
+      loader: 'file',
+      query: {
+        name: 'fonts/[name].[ext]'
+      }
     }]
   },
   postcss: function postcss() {
     return [_autoprefixer2.default];
   },
-  plugins: _env2.default.deploy ? [new _webpack2.default.DefinePlugin({
+  plugins: [new _webpack2.default.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    filename: 'js/vendor.js'
+  }), new _webpack2.default.optimize.OccurrenceOrderPlugin(true)].concat(_env2.default.local ? [new _webpack2.default.DefinePlugin({
+    'process.env': {
+      NODE_ENV: (0, _stringify2.default)('development'),
+      VERSION: (0, _stringify2.default)(version)
+    }
+  }), new _webpack2.default.HotModuleReplacementPlugin(), new _webpack2.default.NoErrorsPlugin()] : [new _webpack2.default.DefinePlugin({
     'process.env': {
       NODE_ENV: (0, _stringify2.default)('production'),
       VERSION: (0, _stringify2.default)(version)
     }
-  }),
-  // new webpack.ProvidePlugin({
-  //   $: './js/jquery.min',
-  //   jQuery: './js/jquery.min',
-  // }),
-  new _webpack2.default.optimize.CommonsChunkPlugin('vendor', 'vendor.js'), new _webpack2.default.optimize.DedupePlugin(), new _webpack2.default.optimize.UglifyJsPlugin({
+  }), new _webpack2.default.optimize.DedupePlugin(), new _webpack2.default.optimize.UglifyJsPlugin({
     minimize: true,
     sourceMap: false,
     compressor: {
       warnings: false
     }
-  })] : [new _webpack2.default.DefinePlugin({
-    'process.env': {
-      NODE_ENV: (0, _stringify2.default)('development'),
-      VERSION: (0, _stringify2.default)(version)
-    }
-  }),
-  // new webpack.ProvidePlugin({
-  //   $: './js/jquery.min',
-  //   jQuery: './js/jquery.min',
-  // }),
-  new _webpack2.default.optimize.CommonsChunkPlugin('vendor', 'vendor.js'), new _webpack2.default.optimize.DedupePlugin(), new _webpack2.default.HotModuleReplacementPlugin(), new _webpack2.default.NoErrorsPlugin()]
+  })])
 };

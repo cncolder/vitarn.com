@@ -28,9 +28,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = require('react-dom/server');
+var _env = require('../lib/env');
 
-var _server2 = _interopRequireDefault(_server);
+var _env2 = _interopRequireDefault(_env);
 
 var _i18n = require('../lib/i18n');
 
@@ -49,7 +49,11 @@ var _class = function (_React$Component) {
   (0, _createClass3.default)(_class, [{
     key: 'render',
     value: function render() {
-      var title = (0, _i18n2.default)('ViTarn');
+      var lang = this.props.lang;
+
+      var __ = (0, _i18n2.default)(lang);
+      var title = __('ViTarn');
+
       var head = _react2.default.createElement(
         'head',
         null,
@@ -78,7 +82,8 @@ var _class = function (_React$Component) {
         _react2.default.createElement('meta', { name: 'msapplication-TileColor', content: '#0e90d2' }),
         _react2.default.createElement('link', { rel: 'stylesheet', href: '/css/animate.min.css' }),
         _react2.default.createElement('link', { rel: 'stylesheet', href: '/css/bootstrap.min.css' }),
-        _react2.default.createElement('link', { rel: 'stylesheet', href: '/css/font-awesome.min.css' })
+        _react2.default.createElement('link', { rel: 'stylesheet', href: '/css/font-awesome.min.css' }),
+        _env2.default.deploy ? _react2.default.createElement('link', { rel: 'stylesheet', href: '/css/client.css' }) : _react2.default.createElement('style', null)
       );
 
       var body = _react2.default.createElement(

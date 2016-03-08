@@ -32,10 +32,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = require('react-dom/server');
-
-var _server2 = _interopRequireDefault(_server);
-
 var _i18n = require('../lib/i18n');
 
 var _i18n2 = _interopRequireDefault(_i18n);
@@ -53,9 +49,11 @@ var _class = function (_React$Component) {
   (0, _createClass3.default)(_class, [{
     key: 'render',
     value: function render() {
+      var __ = (0, _i18n2.default)(this.props.lang);
+
       return _react2.default.createElement(
         _layout2.default,
-        null,
+        { lang: this.props.lang },
         _react2.default.createElement(
           'nav',
           { id: 'mainNav', className: 'navbar navbar-default navbar-fixed-top' },
@@ -71,7 +69,7 @@ var _class = function (_React$Component) {
                 _react2.default.createElement(
                   'span',
                   { className: 'sr-only' },
-                  (0, _i18n2.default)('Toggle navigation')
+                  __('Toggle navigation')
                 ),
                 _react2.default.createElement('span', { className: 'icon-bar' }),
                 _react2.default.createElement('span', { className: 'icon-bar' }),
@@ -80,7 +78,7 @@ var _class = function (_React$Component) {
               _react2.default.createElement(
                 'a',
                 { className: 'navbar-brand page-scroll', href: '#page-top' },
-                (0, _i18n2.default)('ViTarn')
+                __('ViTarn')
               )
             ),
             _react2.default.createElement(
@@ -95,7 +93,7 @@ var _class = function (_React$Component) {
                   _react2.default.createElement(
                     'a',
                     { className: 'page-scroll', href: '/web' },
-                    (0, _i18n2.default)('Web design')
+                    __('Web design')
                   )
                 ),
                 _react2.default.createElement(
@@ -104,7 +102,7 @@ var _class = function (_React$Component) {
                   _react2.default.createElement(
                     'a',
                     { className: 'page-scroll', href: '/wechat' },
-                    (0, _i18n2.default)('Wechat platform')
+                    __('Wechat platform')
                   )
                 ),
                 _react2.default.createElement(
@@ -113,7 +111,7 @@ var _class = function (_React$Component) {
                   _react2.default.createElement(
                     'a',
                     { className: 'page-scroll', href: '/app' },
-                    (0, _i18n2.default)('App develop')
+                    __('App develop')
                   )
                 )
               ),
@@ -126,7 +124,7 @@ var _class = function (_React$Component) {
                   _react2.default.createElement(
                     'a',
                     { className: 'page-scroll', href: '#about' },
-                    (0, _i18n2.default)('About')
+                    __('About')
                   )
                 ),
                 _react2.default.createElement(
@@ -135,7 +133,7 @@ var _class = function (_React$Component) {
                   _react2.default.createElement(
                     'a',
                     { className: 'page-scroll', href: '#services' },
-                    (0, _i18n2.default)('Services')
+                    __('Services')
                   )
                 ),
                 _react2.default.createElement(
@@ -144,7 +142,7 @@ var _class = function (_React$Component) {
                   _react2.default.createElement(
                     'a',
                     { className: 'page-scroll', href: '#portfolio' },
-                    (0, _i18n2.default)('Portfolio')
+                    __('Portfolio')
                   )
                 ),
                 _react2.default.createElement(
@@ -153,7 +151,7 @@ var _class = function (_React$Component) {
                   _react2.default.createElement(
                     'a',
                     { className: 'page-scroll', href: '#contact' },
-                    (0, _i18n2.default)('Contact')
+                    __('Contact')
                   )
                 )
               )
@@ -172,18 +170,18 @@ var _class = function (_React$Component) {
               _react2.default.createElement(
                 'h1',
                 null,
-                (0, _i18n2.default)('Make science and technology more simple')
+                __('Make science and technology more simple')
               ),
               _react2.default.createElement('hr', null),
               _react2.default.createElement(
                 'p',
                 null,
-                (0, _i18n2.default)('Information technology will be anytime, anywhere in the future. Like the air.')
+                __('Information technology will be anytime, anywhere in the future. Same as air.')
               ),
               _react2.default.createElement(
                 'a',
                 { href: '#about', className: 'btn btn-primary btn-xl page-scroll' },
-                (0, _i18n2.default)('Find Out More')
+                __('Find Out More')
               )
             )
           )
@@ -203,18 +201,18 @@ var _class = function (_React$Component) {
                 _react2.default.createElement(
                   'h2',
                   { className: 'section-heading' },
-                  (0, _i18n2.default)('We\'ve got what you need!')
+                  __('We\'ve got what you need!')
                 ),
                 _react2.default.createElement('hr', { className: 'light' }),
                 _react2.default.createElement(
                   'p',
                   { className: 'text-faded' },
-                  (0, _i18n2.default)('We can help you build better website, manage sns network.')
+                  __('We can help you build better website, manage sns network.')
                 ),
                 _react2.default.createElement(
                   'a',
                   { href: '#services', className: 'btn btn-default btn-xl page-scroll' },
-                  (0, _i18n2.default)('Get Started!')
+                  __('Get Started!')
                 )
               )
             )
@@ -235,7 +233,7 @@ var _class = function (_React$Component) {
                 _react2.default.createElement(
                   'h2',
                   { className: 'section-heading' },
-                  (0, _i18n2.default)('At Your Service')
+                  __('At Your Service')
                 ),
                 _react2.default.createElement('hr', { className: 'primary' })
               )
@@ -257,12 +255,12 @@ var _class = function (_React$Component) {
                   _react2.default.createElement(
                     'h3',
                     null,
-                    (0, _i18n2.default)('Remarkable Quality')
+                    __('Remarkable Quality')
                   ),
                   _react2.default.createElement(
                     'p',
                     { className: 'text-muted' },
-                    (0, _i18n2.default)('We are all OCD-like young people. We are more focus on quality than you.')
+                    __('We are all OCD-like young people. We are more focus on quality than you.')
                   )
                 )
               ),
@@ -276,12 +274,12 @@ var _class = function (_React$Component) {
                   _react2.default.createElement(
                     'h3',
                     null,
-                    (0, _i18n2.default)('Ready to Ship')
+                    __('Ready to Ship')
                   ),
                   _react2.default.createElement(
                     'p',
                     { className: 'text-muted' },
-                    (0, _i18n2.default)('You can join our design and development process to see what happened about your product.')
+                    __('You can join our design and development process to see what happened about your product.')
                   )
                 )
               ),
@@ -295,12 +293,12 @@ var _class = function (_React$Component) {
                   _react2.default.createElement(
                     'h3',
                     null,
-                    (0, _i18n2.default)('Up to Date')
+                    __('Up to Date')
                   ),
                   _react2.default.createElement(
                     'p',
                     { className: 'text-muted' },
-                    (0, _i18n2.default)('We update dependencies to keep things fresh.')
+                    __('We update dependencies to keep things fresh.')
                   )
                 )
               ),
@@ -314,12 +312,12 @@ var _class = function (_React$Component) {
                   _react2.default.createElement(
                     'h3',
                     null,
-                    (0, _i18n2.default)('Made with Love')
+                    __('Made with Love')
                   ),
                   _react2.default.createElement(
                     'p',
                     { className: 'text-muted' },
-                    (0, _i18n2.default)('We have to make your products with love these days!')
+                    __('We have to make your products with love these days!')
                   )
                 )
               )
@@ -351,12 +349,12 @@ var _class = function (_React$Component) {
                       _react2.default.createElement(
                         'div',
                         { className: 'project-category text-faded' },
-                        (0, _i18n2.default)('Web design')
+                        __('Web design')
                       ),
                       _react2.default.createElement(
                         'div',
                         { className: 'project-name' },
-                        (0, _i18n2.default)('Bao Bao')
+                        __('Bao Bao')
                       )
                     ),
                     _react2.default.createElement('div', { className: 'qrcode', 'data-qrtext': 'http://bao--bao.com' })
@@ -379,12 +377,12 @@ var _class = function (_React$Component) {
                       _react2.default.createElement(
                         'div',
                         { className: 'project-category text-faded' },
-                        (0, _i18n2.default)('Web design')
+                        __('Web design')
                       ),
                       _react2.default.createElement(
                         'div',
                         { className: 'project-name' },
-                        (0, _i18n2.default)('Hao Duo Tong Shu')
+                        __('Hao Duo Tong Shu')
                       )
                     ),
                     _react2.default.createElement('div', { className: 'qrcode', 'data-qrtext': 'http://haoduotongshu.com' })
@@ -407,12 +405,12 @@ var _class = function (_React$Component) {
                       _react2.default.createElement(
                         'div',
                         { className: 'project-category text-faded' },
-                        (0, _i18n2.default)('Wechat shop')
+                        __('Wechat shop')
                       ),
                       _react2.default.createElement(
                         'div',
                         { className: 'project-name' },
-                        (0, _i18n2.default)('Hao Duo Tong Shu')
+                        __('Hao Duo Tong Shu')
                       )
                     ),
                     _react2.default.createElement('div', { className: 'qrcode', 'data-qrtext': 'http://kdt.im/09kxHKmEj' })
@@ -435,12 +433,12 @@ var _class = function (_React$Component) {
                       _react2.default.createElement(
                         'div',
                         { className: 'project-category text-faded' },
-                        (0, _i18n2.default)('Event')
+                        __('Event')
                       ),
                       _react2.default.createElement(
                         'div',
                         { className: 'project-name' },
-                        (0, _i18n2.default)('"I love the blue sky" children drawings poll')
+                        __('"I love the blue sky" children drawings poll')
                       )
                     ),
                     _react2.default.createElement('div', { className: 'qrcode', 'data-qrtext': 'http://haoduotongshu.com/poll/outlets' })
@@ -462,7 +460,7 @@ var _class = function (_React$Component) {
               _react2.default.createElement(
                 'h2',
                 null,
-                (0, _i18n2.default)('We make more cool projects everydays.')
+                __('We make more cool projects everydays.')
               )
             )
           )
@@ -482,13 +480,13 @@ var _class = function (_React$Component) {
                 _react2.default.createElement(
                   'h2',
                   { className: 'section-heading' },
-                  (0, _i18n2.default)('Let\'s Get In Touch!')
+                  __('Let\'s Get In Touch!')
                 ),
                 _react2.default.createElement('hr', { className: 'primary' }),
                 _react2.default.createElement(
                   'p',
                   null,
-                  (0, _i18n2.default)('Ready to start your next project with us? That\'s great! Give us a call or send us an email and we will get back to you as soon as possible!')
+                  __('Ready to start your next project with us? That\'s great! Give us a call or send us an email and we will get back to you as soon as possible!')
                 )
               ),
               _react2.default.createElement(

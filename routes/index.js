@@ -41,8 +41,9 @@ var router = new _koaRouter2.default().get('/', function () {
 
             ctx.render('index', {
               env: {
-                NODE_ENV: process.env.NODE_ENV
-              }
+                env: process.env.NODE_ENV
+              },
+              lang: ctx.acceptsLanguages('zh', 'en') || 'en'
             });
             ctx.status = 200;
 

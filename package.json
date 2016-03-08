@@ -1,6 +1,6 @@
 {
   "name": "vitarn.com",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "colder",
   "description": "vitarn.com website",
   "keywords": [],
@@ -40,6 +40,7 @@
     "babel-preset-react": "6.5.0",
     "babel-preset-stage-0": "6.5.0",
     "css-loader": "^0.23.1",
+    "extract-loader": "^0.0.2",
     "file-loader": "^0.8.5",
     "koa-webpack-dev-middleware": "^1.1.0",
     "koa-webpack-hot-middleware": "^1.0.3",

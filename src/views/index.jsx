@@ -1,13 +1,14 @@
 import Layout from './layout'
 import React from 'react'
-import ReactDOMServer from 'react-dom/server'
-import __ from '../lib/i18n'
+import i18n from '../lib/i18n'
 
 
 export default class extends React.Component {
   render() {
+    const __ = i18n(this.props.lang)
+
     return (
-      <Layout>
+      <Layout lang={ this.props.lang }>
 
         <nav id="mainNav" className="navbar navbar-default navbar-fixed-top">
           <div className="container-fluid">
@@ -60,7 +61,7 @@ export default class extends React.Component {
             <div className="header-content-inner">
               <h1>{ __('Make science and technology more simple') }</h1>
               <hr />
-              <p>{ __('Information technology will be anytime, anywhere in the future. Like the air.') }</p>
+              <p>{ __('Information technology will be anytime, anywhere in the future. Same as air.') }</p>
               <a href="#about" className="btn btn-primary btn-xl page-scroll">{ __('Find Out More') }</a>
             </div>
           </div>

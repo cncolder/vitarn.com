@@ -1,11 +1,16 @@
 import React from 'react'
-import ReactDOMServer from 'react-dom/server'
-import __ from '../lib/i18n'
+import env from '../lib/env'
+import i18n from '../lib/i18n'
 
 
 export default class extends React.Component {
   render() {
+    const {
+      lang
+    } = this.props
+    const __ = i18n(lang)
     const title = __('ViTarn')
+
     const head = (
       <head>
         <meta charSet="utf-8" />
@@ -48,6 +53,9 @@ export default class extends React.Component {
         <link rel="stylesheet" href="/css/animate.min.css" />
         <link rel="stylesheet" href="/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/css/font-awesome.min.css" />
+        { env.deploy ?
+          (<link rel="stylesheet" href="/css/client.css" />) :
+          (<style></style>) }
       </head>
     )
 

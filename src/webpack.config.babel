@@ -5,24 +5,29 @@ import pkg from './package.json'
 import env from './lib/env'
 
 
-const version = pkg.version
 const join = p => path.join(__dirname, p)
-
-/**
- * https://github.com/glenjamin/webpack-hot-middleware#config
- *
- * path - The path which the middleware is serving the event stream on
- * timeout - The time to wait after a disconnection before attempting to reconnect
- * overlay - Set to false to disable the DOM-based client-side overlay.
- * reload - Set to true to auto-reload the page when webpack gets stuck.
- * noInfo - Set to true to disable informational console logging.
- * quiet - Set to true to disable all console logging.
- */
-const hotMiddleware = 'webpack-hot-middleware/client?reload=true&overlay=false'
+const version = pkg.version
 
 export default {
   entry: {
-    client: env.deploy ? './client' : [hotMiddleware, './client'],
+    client: env.local ? [
+      /**
+       * https://github.com/glenjamin/webpack-hot-middleware#config
+       *
+       * path - The path which the middleware is serving the event stream on
+       * timeout - The time to wait after a disconnection before attempting to reconnect
+       * overlay - Set to false to disable the DOM-based client-side overlay.
+       * reload - Set to true to auto-reload the page when webpack gets stuck.
+       * noInfo - Set to true to disable informational console logging.
+       * quiet - Set to true to disable all console logging.
+       */
+      'webpack-hot-middleware/client?reload=true&overlay=false',
+      'style!./client/less/index.less',
+      './client',
+    ] : [
+      'file?name=css/client.css!extract!./client/less/index.less',
+      './client',
+    ],
     // vendor: [
     //   './client/css/animate.min.css',
     //   './client/css/bootstrap.min.css',
@@ -36,11 +41,11 @@ export default {
     // ],
   },
   output: {
-    path: join('./public/js/'),
-    filename: '[name].js',
-    publicPath: '/js/',
+    path: join('./public/'),
+    filename: 'js/[name].js',
+    // publicPath: '/js/',
   },
-  devtool: env.deploy ? [] : 'inline-source-map',
+  devtool: env.local ? 'inline-source-map' : [],
   resolve: {
     extensions: ['', '.webpack.js', '.web.js', '.js', '.babel', '.jsx'],
   },
@@ -60,11 +65,8 @@ export default {
         plugins: ['transform-runtime'],
       },
     }, {
-      test: /\.css$/,
-      loader: 'style!css',
-    }, {
       test: /\.less$/,
-      loader: 'style!css!postcss-loader!less?noIeCompat',
+      loader: 'css!postcss!less?noIeCompat',
     }, {
       test: /\.(jpg)$/,
       loader: 'url',
@@ -89,21 +91,34 @@ export default {
     }, {
       test: /\.(eot|svg)/,
       loader: 'file',
+      query: {
+        name: 'fonts/[name].[ext]',
+      },
     }, ],
   },
   postcss: () => [autoprefixer],
-  plugins: env.deploy ? [
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'js/vendor.js',
+    }),
+    new webpack.optimize.OccurrenceOrderPlugin(true),
+  ].concat(env.local ? [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('development'),
+        VERSION: JSON.stringify(version),
+      },
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+  ] : [
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
         VERSION: JSON.stringify(version),
       },
     }),
-    // new webpack.ProvidePlugin({
-    //   $: './js/jquery.min',
-    //   jQuery: './js/jquery.min',
-    // }),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
@@ -112,20 +127,5 @@ export default {
         warnings: false,
       },
     }),
-  ] : [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('development'),
-        VERSION: JSON.stringify(version),
-      },
-    }),
-    // new webpack.ProvidePlugin({
-    //   $: './js/jquery.min',
-    //   jQuery: './js/jquery.min',
-    // }),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-  ]
+  ]),
 }
